@@ -1,12 +1,12 @@
 // import contact from './contact.js';
 
 export default function home() {
-    return "<h1>Home Page</h1>"
+    return `<a href="/login"><h1>Home Page</h1></a>`
 }
 
-export  function contact() { 
+// export  function contact() { 
     
-    return '<h1>Contact Page</h1>'
+//     return '<h1>Contact Page</h1>'
 
-}
+// }
 

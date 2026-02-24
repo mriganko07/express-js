@@ -1,6 +1,4 @@
+export default function submit() {
 
-export default function home() { 
-    
     return `<a href="/login"><h1>LOGIN</h1></a>`
-
 }
