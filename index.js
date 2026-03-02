@@ -9,6 +9,12 @@ import about from './pages/about.js';
 import path from 'path';
 
 const app = express()
+const about_path = path.resolve('view')
+const public_path = path.resolve('public')
+
+// console.log(public_path);
+
+app.use(express.static(public_path))
 
 // app.get('/', (req, res) => {
 //   res.send(home())
@@ -48,28 +54,39 @@ const app = express()
 
 app.get('/', (req, res) => {
   // console.log(__dirname);
-  const absolute_path = path.resolve('view/home.html')
+  // const absolute_path = path.resolve('view/home.html')
 
   // console.log(absolute_path);
   
-  res.sendFile(absolute_path);
+  res.sendFile(about_path + "/home.html");
 })
 
 app.get('/login', (req, res) => {
 
-  const login_path = path.resolve('view/login.html')
+  // const login_path = path.resolve('view/login.html')
   
-  res.sendFile(login_path);
+  res.sendFile(about_path + "/login.html");
 
 })
 
 app.get('/about', (req, res) => {
 
-  const about_path = path.resolve('view/about.html')
+  // const about_path = path.resolve('view/about.html')
   
-  res.sendFile(about_path);
+  res.sendFile(about_path + "/about.html");
 
 })
+
+
+app.use((req, res) =>{ // ---> app.use holo multi purpose function
+
+  // const about_path = path.resolve('view/404.html')
+  
+  // res.sendFile(about_path);
+
+  res.status(404).sendFile(about_path + "/404.html")
+})
+
 
 
 app.listen(3000)
