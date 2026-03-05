@@ -116,8 +116,15 @@ app.get('/', (req, res) => {
 
 
 
-// -------> This is global Middleware
 
+
+ /* -----------------------------------------------
+ --------- This is global Middleware --------------
+ -------------------------------------------------- */
+
+
+
+ 
 
 // function agecheck(req, res, next) {
 //   if (!req.query.age || req.query.age<18) {
