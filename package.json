@@ -1,7 +1,7 @@
 {
   "name": "node-js",
   "version": "1.0.0",
-  "main": "index4.js",
+  "main": "index5.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "morgan": "^1.10.1"
   }
 }
