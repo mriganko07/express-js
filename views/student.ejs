@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Data will be here.</h1>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Email</td>
+            <td>Ph No:</td>
+        </tr>
+        <% result.forEach(result => {%>
+            <tr>
+                <td><%= result.name %></td>
+                <td><%= result.age %></td>
+                <td><%= result.email %></td>
+                <td><%= result.mobile %></td>
+            </tr>
+    
+        <%}) %>
+    </table>
+</body>
+</html>
