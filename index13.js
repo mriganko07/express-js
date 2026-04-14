@@ -9,9 +9,12 @@ function dbconnection() {
 
 }
 
+app.use(express.json())
+
 await mongoose.connect("mongodb://localhost:27017/school").then (()=>{
     console.log("connect");
 })
+
 
 app.get ('/', async(req, res) =>{
     
@@ -20,4 +23,11 @@ app.get ('/', async(req, res) =>{
 
 })
 
-app.listen(4004)
+app.post('/save', async(req, res) =>{
+
+    console.log(req.body);
+    const studentdata = await studentmodel.create(req.body);
+    res.send({"Message" : " Data Saved", "Success" : true, storedinfo: studentdata})
+})
+
+app.listen(4444)

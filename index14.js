@@ -3,7 +3,6 @@ import { MongoClient, ObjectId } from "mongodb";
 // import { connection } from 'mongoose';
 
 const app = express()
-
 const dbname = "school";
 const url = "mongodb://localhost:27017/";
 const client = new MongoClient(url);
@@ -130,6 +129,54 @@ client.connect().then((connection) =>{
         res.send({Message : "Data Fetch", Success : true}) 
         // res.send(result)
     })
+
+    
+    app.get('/student/:id', async(req, res) =>{
+        
+        const id = req.params.id;
+        console.log(id);
+        const collection = db.collection('students');
+        const result = await collection.findOne({_id : new ObjectId(id)});  
+        res.send({Message : "Data Fetch", Success : true}) 
+        // res.send(result)
+    })
+
+
+    app.post("/ui/update/:id", async (req, res) => {
+
+        // UI THEKE UPDATE
+
+        console.log(req.body)
+        console.log(req.params.id)
+        const collection = db.collection("students");
+        const filter = { _id: new ObjectId(req.params.id) }
+        const update = { $set: req.body }
+        const result = await collection.updateOne(filter, update)
+        if (result) {
+            res.send("data updated")
+        } else {
+            res.send("data not updated");
+        }
+    })
+
+
+    app.put("/update/:id", async (req, res) => {
+
+        // API THEKE UPDATE
+
+        console.log(req.body)
+        console.log(req.params.id)
+        const collection = db.collection("students");
+        const filter = { _id: new ObjectId(req.params.id) }
+        const update = { $set: req.body }
+        const result = await collection.updateOne(filter, update)
+        if (result) {
+            res.send({Message : "Data Updated", Success : true, result: result})
+        } else {
+            res.send({Message : "Data Not Updated", Success : false, result: result});
+        }
+    })
+
 
 })
 

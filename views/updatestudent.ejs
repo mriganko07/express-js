@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/ui/update/<%=result._id%>" method="post">
         <input type="text" name="name" placeholder="NAME" value="<%= result.name%>" ></br></br>
         <input type="number" name="age" placeholder="AGE" value="<%= result.age%>" ></br></br>
         <input type="email" name="email" placeholder="EMAIL ADDRESS" value="<%= result.email%>" ></br></br>
         <input type="number" name="mobile" value="<%= result.mobile%>"  placeholder="Mobile No."></br></br>
-        <button type="submit">SUBMIT</button>
+        <button type="submit">UPDATE</button>
     </form> 
 </body>
 </html>
