@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 // import { connection } from 'mongoose';
 
 const app = express()
@@ -73,6 +73,62 @@ client.connect().then((connection) =>{
         const result = await collection.insertOne(req.body);     
         res.send({Message: "Data Stored", Success : true , result: result})
 
+    })
+
+    app.delete('/delete/:id', async(req, res) => {
+        
+        // console.log(req.params.id);
+        // res.send("Delete")
+        const collection = db.collection('students');
+        const result = await collection.deleteOne({_id : new ObjectId(req.params.id)});     
+        if (result) {
+            res.send({"Message" : "Student Data Deleted", 'Success' : true})
+        }
+
+        else{
+            res.send({"Message" : "Student Data Not Deleted", 'Success' : false})
+        }
+        // console.log(result);
+        
+    })
+
+    
+    app.get('/ui/delete/:id', async(req, res) => {
+        
+        const collection = db.collection('students');
+        const result = await collection.deleteOne({_id : new ObjectId(req.params.id)});     
+
+        if (result) {
+            res.send("Student Record Deleted")
+        }
+
+        else{
+            res.send("Student Record Not Deleted");
+        }
+        
+    })
+
+    app.set('view engine', 'ejs');
+
+    app.get('/ui/student/:id', async(req, res) =>{
+        
+        const id = req.params.id;
+        console.log(id);
+        const collection = db.collection('students');
+        const result = await collection.findOne({_id : new ObjectId(id)});  
+        res.render("updatestudent", {result}) 
+        // res.send(result)
+    })
+
+
+    app.get('/ui/student/:id', async(req, res) =>{
+        
+        const id = req.params.id;
+        console.log(id);
+        const collection = db.collection('students');
+        const result = await collection.findOne({_id : new ObjectId(id)});  
+        res.send({Message : "Data Fetch", Success : true}) 
+        // res.send(result)
     })
 
 })
