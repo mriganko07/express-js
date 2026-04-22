@@ -26,6 +26,13 @@ app.get ('/', async(req, res) =>{
 app.post('/save', async(req, res) =>{
 
     console.log(req.body);
+    const {name , age, email, mobile} = req.body;
+
+    if(!req.body || !name || !age || !email || !mobile){
+        const studentdata = await studentmodel.create(req.body);
+        res.send({"Message" : " Data Not Saved", "Success" : false, storedinfo: null})
+    }
+
     const studentdata = await studentmodel.create(req.body);
     res.send({"Message" : " Data Saved", "Success" : true, storedinfo: studentdata})
 })
